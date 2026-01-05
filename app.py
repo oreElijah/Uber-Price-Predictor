@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import gdown
+import os
 
 MODEL_PATH = "models/model.pkl"
 MODEL_URL = "https://drive.google.com/file/d/1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_/view?usp=sharing"
