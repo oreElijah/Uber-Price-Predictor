@@ -8,6 +8,8 @@ import os
 MODEL_PATH = "models/model.pkl"
 MODEL_URL = "https://drive.google.com/file/d/1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_/view?usp=sharing"
 
+os.makedirs("models", exist_ok=True)
+
 if not os.path.exists(MODEL_PATH):
     gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
 
