@@ -2,8 +2,15 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import gdown
 
-model = joblib.load('.ipynb_checkpoints/RFR_Uber_Price_Prediction_model.pkl')
+MODEL_PATH = "models/model.pkl"
+MODEL_URL = "https://drive.google.com/file/d/1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_/view?usp=sharing"
+
+if not os.path.exists(MODEL_PATH):
+    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+
+model = joblib.load(MODEL_PATH)
 
 st.title("Uber Price Prediction App")
 st.write("Enter the ride details to predict the Uber fare.")
