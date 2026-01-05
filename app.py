@@ -6,7 +6,7 @@ import gdown
 import os
 
 MODEL_PATH = "models/model.pkl"
-MODEL_URL = "https://drive.google.com/file/d/1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_/view?usp=sharing"
+MODEL_URL = "https://drive.google.com/uc?id=1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_"
 
 os.makedirs("models", exist_ok=True)
 
