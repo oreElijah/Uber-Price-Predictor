@@ -20,7 +20,8 @@ st.title("Uber Price Prediction App")
 st.write("Enter the ride details to predict the Uber fare.")
 
 pickup_datetime = st.text_input("Pickup Date and Time (YYYY-MM-DD HH:MM:SS)", "2023-01-01 12:00:00")
-trip_distance_km = st.number_input("Trip Distance (km)", min_value=0.0, step=0.1, value=5.0)
+pickup_address = st.text_input("Pickup Address", "350 5th Ave, New York, NY 10118")
+dropoff_address = st.text_input("Dropoff Address", "1 Liberty Island, New York, NY 10004")
 passenger_count = st.number_input("Number of Passengers", min_value=1, step=1, value=1)
 
 def conv_to_coordinates(address):
