@@ -18,7 +18,7 @@ model = joblib.load(MODEL_PATH)
 st.title("Uber Price Prediction App")
 st.write("Enter the ride details to predict the Uber fare.")
 
-pickup_datetime = st.text_input("Pickup Date and Time (YYYY-MM-DD HH:MM:SS)", "2023-01-01 12:00:00")
+pickup_datetime = st.text_input("Pickup Date and Time (YYYY-MM-DD HH:MM:SS)", "2026-01-05 12:00:00")
 trip_distance_km = st.number_input("Trip Distance (km)", min_value=0.0, step=0.1, value=5.0)
 passenger_count = st.number_input("Number of Passengers", min_value=1, step=1, value=1)
 
