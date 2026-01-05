@@ -3,15 +3,24 @@ import pandas as pd
 import numpy as np
 from geopy.geocoders import Nominatim
 import joblib
+import gdown
+import os
 
-model = joblib.load('.ipynb_checkpoints/RFR_Uber_Price_Prediction_model.pkl')
+MODEL_PATH = "models/model.pkl"
+MODEL_URL = "https://drive.google.com/uc?id=1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_"
+
+os.makedirs("models", exist_ok=True)
+
+if not os.path.exists(MODEL_PATH):
+    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+
+model = joblib.load(MODEL_PATH)
 
 st.title("Uber Price Prediction App")
 st.write("Enter the ride details to predict the Uber fare.")
 
 pickup_datetime = st.text_input("Pickup Date and Time (YYYY-MM-DD HH:MM:SS)", "2023-01-01 12:00:00")
-pickup_address = st.text_input("Pickup Address", "1600 Amphitheatre Parkway, Mountain View, CA")
-dropoff_address = st.text_input("Dropoff Address", "1 Infinite Loop, Cupertino, CA")
+trip_distance_km = st.number_input("Trip Distance (km)", min_value=0.0, step=0.1, value=5.0)
 passenger_count = st.number_input("Number of Passengers", min_value=1, step=1, value=1)
 
 def conv_to_coordinates(address):

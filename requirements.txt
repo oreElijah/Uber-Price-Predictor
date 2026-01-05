@@ -2,4 +2,7 @@ pandas
 numpy
 matplotlib
 streamlit
-sklearn
+scikit-learn
+joblib
+xgboost
+gdown
