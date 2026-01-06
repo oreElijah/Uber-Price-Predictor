@@ -5,6 +5,7 @@ from geopy.geocoders import Nominatim
 import joblib
 import gdown
 import os
+from app.common.utils import Haversine, conv_to_coordinates
 
 MODEL_PATH = "models/model.pkl"
 MODEL_URL = "https://drive.google.com/uc?id=1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_"
@@ -24,29 +25,6 @@ pickup_address = st.text_input("Pickup Address", "350 5th Ave, New York, NY 1011
 dropoff_address = st.text_input("Dropoff Address", "1 Liberty Island, New York, NY 10004")
 passenger_count = st.number_input("Number of Passengers", min_value=1, step=1, value=1)
 
-def conv_to_coordinates(address):
-    geolocator = Nominatim(user_agent="uber_price_prediction_app")
-    location = geolocator.geocode(address)
-    if location:
-        return (location.latitude, location.longitude)
-    else:
-        st.error(f"Could not geocode address: {address}")
-        return (None, None)
-    
-def Haversine(lat1, lon1, lat2, lon2):
-    R = 6371
-    lat1, lat2, lon1, lon2 = map(
-        np.radians, [lat1, lat2, lon1, lon2]
-    ) 
-    dlat = lat2-lat1
-    dlon = lon2-lon1
-
-    a = (np.sin(dlat/2)**2 + np.cos(lat1)*np.cos(lat2)*np.sin(dlon/2)**2)
-
-    c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1-a))
-
-    d = R * c
-    return d
 
 if st.button("Predict Fare"):
     pickup_coords = conv_to_coordinates(pickup_address)
@@ -76,3 +54,4 @@ if st.button("Predict Fare"):
     predicted_fare = model.predict(features)[0]
     
     st.success(f"Predicted Uber Fare: ${predicted_fare:.2f}")
+    st.balloons()
