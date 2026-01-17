@@ -5,7 +5,7 @@ from geopy.geocoders import Nominatim
 import joblib
 import gdown
 import os
-from common.utils import Haversine, conv_to_coordinates
+from app.common.utils import Haversine, conv_to_coordinates
 
 MODEL_PATH = "models/model.pkl"
 MODEL_URL = "https://drive.google.com/uc?id=1B5PKRVhubSXqxiBLEQjKHQQl9Rbt9oU_"
