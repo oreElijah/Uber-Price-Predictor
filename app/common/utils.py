@@ -1,13 +1,19 @@
-from geopy.geocoders import Nominatim
 import numpy as np
+import streamlit as st
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 
+@st.cache_data(ttl=86400)
 def conv_to_coordinates(address):
     geolocator = Nominatim(user_agent="uber_price_prediction_app")
-    location = geolocator.geocode(address)
-    if location:
-        return (location.latitude, location.longitude)
-    else:
+    try:
+        location = geolocator.geocode(address, timeout=10)
+        if location:
+            return (location.latitude, location.longitude)
         return (None, None)
+    except (GeocoderTimedOut, GeocoderUnavailable):
+        return (None, None)
+
     
 def Haversine(lat1, lon1, lat2, lon2):
     R = 6371
